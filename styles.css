@@ -1,0 +1,10 @@
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1rem);
+  grid-gap: .5rem;
+  justify-items: end;
+}
+
+.red {
+  color: red;
+}
