@@ -62,7 +62,11 @@ for (let i = 0; i <= 2; i++) {
   const calendarName = `#calendar${i}`;
   const calendar = document.querySelector(calendarName);
 
+  const workingDate = new Date(currentYear, currentMonth + i + 1, 0);
+  const workingYear = workingDate.getFullYear();
+  const workingMonth = workingDate.getMonth();
+
   createDayHeadings(calendar);
-  padCalendar(calendar, currentYear, currentMonth);
-  createDates(calendar, currentYear, currentMonth);
+  padCalendar(calendar, workingYear, workingMonth);
+  createDates(calendar, workingYear, workingMonth);
 }
