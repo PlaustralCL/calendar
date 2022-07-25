@@ -58,15 +58,9 @@ const currentMonth = today.getMonth();
 
 dateHeading(today);
 
-for (i = 0; i <= 2; i++) {
-  console.log(`#calendar${i}`);
-}
-
-for (i = 0; i <= 2; i++) {
-  console.log(i);
+for (let i = 0; i <= 2; i++) {
   const calendarName = `#calendar${i}`;
   const calendar = document.querySelector(calendarName);
-  console.log(calendarName);
 
   createDayHeadings(calendar);
   padCalendar(calendar, currentYear, currentMonth);
