@@ -49,6 +49,12 @@ function createDates(calendar, currentYear, currentMonth) {
   }
 }
 
+function createCalendarHeading(workingYear, workingMonth, index) {
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const headingName = `#heading${index}`;
+  const heading = document.querySelector(headingName);
+  heading.textContent = `${months[workingMonth]} ${workingYear}`;
+}
 
 
 
@@ -66,6 +72,7 @@ for (let i = 0; i <= 2; i++) {
   const workingYear = workingDate.getFullYear();
   const workingMonth = workingDate.getMonth();
 
+  createCalendarHeading(workingYear, workingMonth, i);
   createDayHeadings(calendar);
   padCalendar(calendar, workingYear, workingMonth);
   createDates(calendar, workingYear, workingMonth);
