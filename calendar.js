@@ -7,8 +7,8 @@ function isSameDay(date) {
   const today = new Date();
 
   if (today.getFullYear() == date.getFullYear()
-      && today.getDate() == date.getDate()
-      && today.getMonth() == date.getMonth()) {
+    && today.getDate() == date.getDate()
+    && today.getMonth() == date.getMonth()) {
     return true;
   }
 }
@@ -22,7 +22,7 @@ function printDateHeading() {
   // Formating information from:
   // https://www.freecodecamp.org/news/how-to-format-dates-in-javascript/
   currentDateElement.textContent = today.toLocaleDateString('en-us',
-      { weekday:"long", year:"numeric", month:"short", day:"numeric"});
+    { weekday: "long", year: "numeric", month: "short", day: "numeric" });
 }
 
 /**
@@ -30,7 +30,7 @@ function printDateHeading() {
  * @param calendar The Dom element where the calendar is being printed
  */
 function createDayHeadings(calendar) {
-  const days = ["S","M", "T", "W", "R", "F", "S"];
+  const days = ["S", "M", "T", "W", "R", "F", "S"];
   for (i = 0; i <= 6; i++) {
     const div = document.createElement('div');
     div.textContent = days[i];
@@ -66,7 +66,7 @@ function createDates(calendar, currentYear, currentMonth) {
     const div = document.createElement('div');
     div.textContent = date.getDate();
     if (isSameDay(date)) {
-      div.classList.add("red");
+      div.classList.add("today");
     }
     calendar.appendChild(div);
   }
