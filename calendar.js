@@ -1,3 +1,9 @@
+document.getElementById("current-date").addEventListener("click", toggleCalendar);
+
+function toggleCalendar() {
+  const classes = document.querySelector("#calendars").classList.toggle("hidden");
+}
+
 /**
  * Determine if the passed date is today
  * @param date The date to be compared

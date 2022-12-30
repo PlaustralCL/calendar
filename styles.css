@@ -13,12 +13,11 @@
   justify-items: end;
 }
 
-.flex-wrapper {
+.calendar-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
   max-width: 1200px;
-
 }
 
 .flex-wrapper--vertical {
@@ -41,4 +40,8 @@
 
 .flex-item {
   margin: 1rem;
+}
+
+.hidden {
+  display: none;
 }
