@@ -1,5 +1,9 @@
-// Determine if the calucated date is today
-function sameDay(date) {
+/**
+ * Determine if the passed date is today
+ * @param date The date to be compared
+ * @return True if date is today, false otherwise
+ */
+function isSameDay(date) {
   const today = new Date();
 
   if (today.getFullYear() == date.getFullYear()
@@ -9,13 +13,22 @@ function sameDay(date) {
   }
 }
 
-function dateHeading() {
+/**
+ * Prints a formated version of today's date to the DOM
+ */
+function printDateHeading() {
   const today = new Date();
-  const currentDate = document.querySelector("#current-date");
-  currentDate.textContent = today.toDateString();
+  const currentDateElement = document.querySelector("#current-date");
+  // Formating information from:
+  // https://www.freecodecamp.org/news/how-to-format-dates-in-javascript/
+  currentDateElement.textContent = today.toLocaleDateString('en-us',
+      { weekday:"long", year:"numeric", month:"short", day:"numeric"});
 }
 
-// add day name labels to the top of the calendar
+/**
+ * Add day name labels to the top of the calendar 
+ * @param calendar The Dom element where the calendar is being printed
+ */
 function createDayHeadings(calendar) {
   const days = ["S","M", "T", "W", "R", "F", "S"];
   for (i = 0; i <= 6; i++) {
@@ -25,7 +38,12 @@ function createDayHeadings(calendar) {
   }
 }
 
-// pad calendar to properly align days of the week
+/**
+ * Pad calendar to properly align days of the week
+ * @param calendar The Dom element where the calendar is being printed
+ * @param curentYear The current year of the calendar being made
+ * @param currentMonth the current month of the calendar being made
+ */
 function padCalendar(calendar, currentYear, currentMonth) {
   const firstDay = new Date(currentYear, currentMonth, 1).getDay();
   for (i = 0; i < firstDay; i++) {
@@ -35,20 +53,31 @@ function padCalendar(calendar, currentYear, currentMonth) {
   }
 }
 
-// Populate the calender with the dates
+/**
+ * Populate the calender with the dates
+ * @param calendar The Dom element where the calendar is being printed
+ * @param curentYear The current year of the calendar being made
+ * @param currentMonth the current month of the calendar being made
+ */
 function createDates(calendar, currentYear, currentMonth) {
   let lastDay = new Date(currentYear, currentMonth + 1, 0).getDate();
   for (i = 1; i <= lastDay; i++) {
     const date = new Date(currentYear, currentMonth, i);
     const div = document.createElement('div');
     div.textContent = date.getDate();
-    if (sameDay(date)) {
+    if (isSameDay(date)) {
       div.classList.add("red");
     }
     calendar.appendChild(div);
   }
 }
 
+/**
+ * Add the month name and year to the top of the calendar
+ * @param workingYear An integer for the current year of the calendar being made
+ * @param workingMonth An integer for the current month of the calendar being made
+ * @param index Integer for the heading index of the current calendar
+ */
 function createMonthHeading(workingYear, workingMonth, index) {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const headingName = `#heading${index}`;
@@ -56,29 +85,55 @@ function createMonthHeading(workingYear, workingMonth, index) {
   heading.textContent = `${months[workingMonth]} ${workingYear}`;
 }
 
+/**
+ * Create a Date object with today's date
+ * @return The Date object
+ */
 function today() {
   return new Date();
 }
 
+/**
+ * Generate the four digit year
+ * @return An integer for the four digit year
+ */
 function currentYear() {
   return today().getFullYear();
 }
 
+/**
+ * Generate an integer for the current month
+ * @return An integer for the current month. January is 0, December is 11
+ */
 function currentMonth() {
   return today().getMonth();
 }
 
-dateHeading();
+/**
+ * Create individual calendars that will be printed to the DOM
+ */
+function createCalendars() {
+  for (let i = 0; i <= 2; i++) {
+    const calendar = document.querySelector(`#calendar${i}`);
 
-for (let i = 0; i <= 2; i++) {
-  const calendar = document.querySelector(`#calendar${i}`);
+    const workingDate = new Date(currentYear(), currentMonth() + i);
+    const workingYear = workingDate.getFullYear();
+    const workingMonth = workingDate.getMonth();
 
-  const workingDate = new Date(currentYear(), currentMonth() + i);
-  const workingYear = workingDate.getFullYear();
-  const workingMonth = workingDate.getMonth();
-
-  createMonthHeading(workingYear, workingMonth, i);
-  createDayHeadings(calendar);
-  padCalendar(calendar, workingYear, workingMonth);
-  createDates(calendar, workingYear, workingMonth);
+    createMonthHeading(workingYear, workingMonth, i);
+    createDayHeadings(calendar);
+    padCalendar(calendar, workingYear, workingMonth);
+    createDates(calendar, workingYear, workingMonth);
+  }
 }
+
+/**
+ * Initiate program and control the flow
+ */
+function main() {
+  printDateHeading();
+  createCalendars();
+}
+
+main();
+
