@@ -119,10 +119,37 @@ function currentMonth() {
 }
 
 /**
+ * Create the HTML scaffold required to build the calendar. This reduces duplication
+ * of HTML and helps make the code more dry.
+ * @param index An integer starting at 0, used to create unique Ids for each
+ * calendar.
+ */
+function createScaffold(index) {
+  const calendars = document.querySelector("#calendars");
+
+  const calendarBoxDiv = document.createElement("div");
+  calendarBoxDiv.classList.add("flex-item");
+  calendars.appendChild(calendarBoxDiv);
+
+  monthHeadingDiv = document.createElement("div");
+  monthHeadingDiv.classList.add("month-header");
+  monthHeadingDiv.setAttribute("id", `heading${index}`);
+  calendarBoxDiv.appendChild(monthHeadingDiv);
+
+  calendarDiv = document.createElement("div");
+  calendarDiv.classList.add("calendar");
+  calendarDiv.setAttribute("id", `calendar${index}`);
+  calendarBoxDiv.appendChild(calendarDiv);
+}
+
+/**
  * Create individual calendars that will be printed to the DOM
  */
 function createCalendars() {
-  for (let i = 0; i <= 2; i++) {
+  const NUMBER_OF_MONTHS = 3;
+  for (let i = 0; i < NUMBER_OF_MONTHS; i++) {
+    createScaffold(i);
+
     const calendar = document.querySelector(`#calendar${i}`);
 
     const workingDate = new Date(currentYear(), currentMonth() + i);
