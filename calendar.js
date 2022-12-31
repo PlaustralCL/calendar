@@ -1,5 +1,8 @@
 document.getElementById("current-date").addEventListener("click", toggleCalendar);
 
+/**
+ * Toggles the visibility of the three month calendar
+ */
 function toggleCalendar() {
   const classes = document.querySelector("#calendars").classList.toggle("hidden");
 }
@@ -9,7 +12,7 @@ function toggleCalendar() {
  * @param date The date to be compared
  * @return True if date is today, false otherwise
  */
-function isSameDay(date) {
+function isToday(date) {
   const today = new Date();
 
   if (today.getFullYear() == date.getFullYear()
@@ -71,7 +74,7 @@ function createDates(calendar, currentYear, currentMonth) {
     const date = new Date(currentYear, currentMonth, i);
     const div = document.createElement('div');
     div.textContent = date.getDate();
-    if (isSameDay(date)) {
+    if (isToday(date)) {
       div.classList.add("today");
     }
     calendar.appendChild(div);
@@ -142,4 +145,3 @@ function main() {
 }
 
 main();
-

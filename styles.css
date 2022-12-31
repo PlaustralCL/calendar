@@ -1,5 +1,6 @@
 :root {
   --today-background: #f7d0e8;
+  /* font-family: sans-serif; */
 }
 
 .heading-container {
@@ -32,6 +33,11 @@
 .today {
   background-color: var(--today-background);
   font-weight: bold;
+}
+
+.month-header {
+  font-weight: bold;
+  text-align: center;
 }
 
 #current-date:hover {
