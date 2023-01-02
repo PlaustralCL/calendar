@@ -5,6 +5,12 @@ document.getElementById("current-date").addEventListener("click", toggleCalendar
  */
 function toggleCalendar() {
   const classes = document.querySelector("#calendars").classList.toggle("hidden");
+  if (document.querySelector("#heading0").textContent == "") {
+    createCalendars();
+  } else {
+    console.log("delete calendars");
+  }
+  // const classes = document.querySelector("#calendars").classList.toggle("hidden");
 }
 
 /**
@@ -124,22 +130,25 @@ function currentMonth() {
  * @param index An integer starting at 0, used to create unique Ids for each
  * calendar.
  */
-function createScaffold(index) {
-  const calendars = document.querySelector("#calendars");
+function createScaffold() {
+  const NUMBER_OF_MONTHS = 3;
+  for (let i = 0; i < NUMBER_OF_MONTHS; i++) {
+    const calendars = document.querySelector("#calendars");
 
-  const calendarBoxDiv = document.createElement("div");
-  calendarBoxDiv.classList.add("flex-item");
-  calendars.appendChild(calendarBoxDiv);
+    const calendarBoxDiv = document.createElement("div");
+    calendarBoxDiv.classList.add("flex-item");
+    calendars.appendChild(calendarBoxDiv);
 
-  monthHeadingDiv = document.createElement("div");
-  monthHeadingDiv.classList.add("month-header");
-  monthHeadingDiv.setAttribute("id", `heading${index}`);
-  calendarBoxDiv.appendChild(monthHeadingDiv);
+    monthHeadingDiv = document.createElement("div");
+    monthHeadingDiv.classList.add("month-header");
+    monthHeadingDiv.setAttribute("id", `heading${i}`);
+    calendarBoxDiv.appendChild(monthHeadingDiv);
 
-  calendarDiv = document.createElement("div");
-  calendarDiv.classList.add("calendar");
-  calendarDiv.setAttribute("id", `calendar${index}`);
-  calendarBoxDiv.appendChild(calendarDiv);
+    calendarDiv = document.createElement("div");
+    calendarDiv.classList.add("calendar");
+    calendarDiv.setAttribute("id", `calendar${i}`);
+    calendarBoxDiv.appendChild(calendarDiv);
+  }
 }
 
 /**
@@ -148,8 +157,6 @@ function createScaffold(index) {
 function createCalendars() {
   const NUMBER_OF_MONTHS = 3;
   for (let i = 0; i < NUMBER_OF_MONTHS; i++) {
-    createScaffold(i);
-
     const calendar = document.querySelector(`#calendar${i}`);
 
     const workingDate = new Date(currentYear(), currentMonth() + i);
@@ -164,11 +171,25 @@ function createCalendars() {
 }
 
 /**
+ * Delete the previously created calendars
+ */
+function deleteCalendars() {
+  const NUMBER_OF_MONTHS = 3;
+  for (let i = 0; i < NUMBER_OF_MONTHS; i++) {
+    document.querySelector(`#heading${i}`).textContent = "";
+    document.querySelector(`#calendar${i}`).textContent = "";
+  }
+
+}
+
+
+/**
  * Initiate program and control the flow
  */
 function main() {
   printDateHeading();
-  createCalendars();
+  createScaffold();
+  // createCalendars();
 }
 
 main();
