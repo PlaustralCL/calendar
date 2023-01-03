@@ -23,6 +23,7 @@ body {
 }
 
 .calendar-wrapper {
+  align-items: center;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -53,6 +54,7 @@ body {
   text-align: center;
 }
 
+.advanceMonth,
 #current-date:hover {
   cursor: pointer;
 }

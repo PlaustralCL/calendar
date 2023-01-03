@@ -1,18 +1,3 @@
-document.getElementById("current-date").addEventListener("click", toggleCalendar);
-
-/**
- * Toggles the visibility of the three month calendar
- */
-function toggleCalendar() {
-  const classes = document.querySelector("#calendars").classList.toggle("hidden");
-  if (document.querySelector("#heading0").textContent == "") {
-    createCalendars();
-  } else {
-    console.log("delete calendars");
-  }
-  // const classes = document.querySelector("#calendars").classList.toggle("hidden");
-}
-
 /**
  * Determine if the passed date is today
  * @param date The date to be compared
@@ -132,9 +117,14 @@ function currentMonth() {
  */
 function createScaffold() {
   const NUMBER_OF_MONTHS = 3;
-  for (let i = 0; i < NUMBER_OF_MONTHS; i++) {
-    const calendars = document.querySelector("#calendars");
+  const calendars = document.querySelector("#calendars");
+  const prevCalDiv = document.createElement("div");
+  prevCalDiv.classList.add("advanceMonth");
+  prevCalDiv.setAttribute("id", "prevCalendar");
+  prevCalDiv.textContent = "previous";
+  calendars.appendChild(prevCalDiv);
 
+  for (let i = 0; i < NUMBER_OF_MONTHS; i++) {
     const calendarBoxDiv = document.createElement("div");
     calendarBoxDiv.classList.add("flex-item");
     calendars.appendChild(calendarBoxDiv);
@@ -149,17 +139,24 @@ function createScaffold() {
     calendarDiv.setAttribute("id", `calendar${i}`);
     calendarBoxDiv.appendChild(calendarDiv);
   }
+
+  const nextCalDiv = document.createElement("div");
+  nextCalDiv.classList.add("advanceMonth");
+  nextCalDiv.setAttribute("id", "nextCalendar");
+  nextCalDiv.textContent = "next";
+  calendars.appendChild(nextCalDiv);
 }
 
 /**
  * Create individual calendars that will be printed to the DOM
+ * @param workingDate The year and month to base the starting calendar on
  */
-function createCalendars() {
+function createCalendars(startingDate) {
   const NUMBER_OF_MONTHS = 3;
   for (let i = 0; i < NUMBER_OF_MONTHS; i++) {
     const calendar = document.querySelector(`#calendar${i}`);
 
-    const workingDate = new Date(currentYear(), currentMonth() + i);
+    workingDate = new Date(startingDate.getFullYear(), startingDate.getMonth() + i);
     const workingYear = workingDate.getFullYear();
     const workingMonth = workingDate.getMonth();
 
@@ -193,3 +190,69 @@ function main() {
 }
 
 main();
+
+document.getElementById("nextCalendar").addEventListener("click", nextCalendar);
+document.getElementById("prevCalendar").addEventListener("click", prevCalendar);
+document.getElementById("current-date").addEventListener("click", toggleCalendar);
+
+/**
+ * Shifts the calendar display one month to the left
+ */
+function prevCalendar() {
+  console.log("prev calendar");
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const startingDate = document.querySelector("#heading0").textContent.split(" ");
+  const startingMonth = startingDate[0];
+  const startingYear = startingDate[1];
+
+  let prevYear = parseInt(startingYear);
+  let prevMonth = months.indexOf(startingMonth);
+  if (prevMonth == 0) {
+    prevMonth = 11;
+    prevYear--;
+  } else {
+    prevMonth--;
+  }
+
+  deleteCalendars();
+  prevDate = new Date(prevYear, prevMonth);
+  createCalendars(prevDate);
+
+}
+
+/**
+ * Shifts the calendar display one month to the right
+ */
+function nextCalendar() {
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const startingDate = document.querySelector("#heading0").textContent.split(" ");
+  const startingMonth = startingDate[0];
+  const startingYear = startingDate[1];
+
+  let nextYear = parseInt(startingYear);
+  let nextMonth = months.indexOf(startingMonth);
+  if (nextMonth == 11) {
+    nextMonth = 0;
+    nextYear++;
+  } else {
+    nextMonth++;
+  }
+
+  deleteCalendars();
+  nextDate = new Date(nextYear, nextMonth);
+  createCalendars(nextDate);
+}
+
+/**
+ * Toggles the visibility of the three month calendar
+ */
+function toggleCalendar() {
+  console.log("toggle calendar");
+  const classes = document.querySelector("#calendars").classList.toggle("hidden");
+  if (document.querySelector("#heading0").textContent == "") {
+    const startingDate = new Date(currentYear(), currentMonth());
+    createCalendars(startingDate);
+  } else {
+    deleteCalendars();
+  }
+}
