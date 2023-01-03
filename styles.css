@@ -1,6 +1,5 @@
 :root {
   --today-background: #f7d0e8;
-  /* font-family: sans-serif; */
 }
 
 body {
@@ -8,21 +7,20 @@ body {
 }
 
 .heading-container {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
 }
 
-.calendar-container {
-  width: 100%;
-}
-
-.calendar {
+.calendar__dates {
   display: grid;
   grid-template-columns: repeat(7, 1rem);
   grid-gap: .5rem;
   justify-items: end;
 }
 
-.calendar-wrapper {
+.calendar {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -30,36 +28,22 @@ body {
   margin-top: 1rem;
 }
 
-.flex-wrapper--vertical {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.flex-wrapper--vertical--fullYear {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.today {
+.calendar__today {
   background-color: var(--today-background);
   font-weight: bold;
 }
 
-.month-header {
+.calendar__month-header {
   font-weight: bold;
   text-align: center;
 }
 
-.advanceMonth,
-#current-date:hover {
+.calendar__shift:hover,
+.heading__current-date:hover {
   cursor: pointer;
 }
 
-.flex-item {
+.calendar__month {
   margin: 1rem;
 }
 

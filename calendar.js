@@ -66,7 +66,7 @@ function createDates(calendar, currentYear, currentMonth) {
     const div = document.createElement('div');
     div.textContent = date.getDate();
     if (isToday(date)) {
-      div.classList.add("today");
+      div.classList.add("calendar__today");
     }
     calendar.appendChild(div);
   }
@@ -119,29 +119,29 @@ function createScaffold() {
   const NUMBER_OF_MONTHS = 3;
   const calendars = document.querySelector("#calendars");
   const prevCalDiv = document.createElement("div");
-  prevCalDiv.classList.add("advanceMonth");
+  prevCalDiv.classList.add("calendar__shift");
   prevCalDiv.setAttribute("id", "prevCalendar");
   prevCalDiv.textContent = "previous";
   calendars.appendChild(prevCalDiv);
 
   for (let i = 0; i < NUMBER_OF_MONTHS; i++) {
     const calendarBoxDiv = document.createElement("div");
-    calendarBoxDiv.classList.add("flex-item");
+    calendarBoxDiv.classList.add("calendar__month");
     calendars.appendChild(calendarBoxDiv);
 
     monthHeadingDiv = document.createElement("div");
-    monthHeadingDiv.classList.add("month-header");
+    monthHeadingDiv.classList.add("calendar__month-header");
     monthHeadingDiv.setAttribute("id", `heading${i}`);
     calendarBoxDiv.appendChild(monthHeadingDiv);
 
     calendarDiv = document.createElement("div");
-    calendarDiv.classList.add("calendar");
+    calendarDiv.classList.add("calendar__dates");
     calendarDiv.setAttribute("id", `calendar${i}`);
     calendarBoxDiv.appendChild(calendarDiv);
   }
 
   const nextCalDiv = document.createElement("div");
-  nextCalDiv.classList.add("advanceMonth");
+  nextCalDiv.classList.add("calendar__shift");
   nextCalDiv.setAttribute("id", "nextCalendar");
   nextCalDiv.textContent = "next";
   calendars.appendChild(nextCalDiv);
