@@ -17,7 +17,7 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1rem);
   grid-gap: .5rem;
-  justify-items: end;
+  text-align: end;
 }
 
 .calendar {
@@ -31,6 +31,7 @@ body {
 .calendar__today {
   background-color: var(--today-background);
   font-weight: bold;
+  text-align: center;
 }
 
 .calendar__month-header {
