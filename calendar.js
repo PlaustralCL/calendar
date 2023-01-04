@@ -140,19 +140,20 @@ function createScaffold() {
 
 function createPreviousButton() {
   const calendars = document.querySelector("#calendars");
-  const prevCalDiv = document.createElement("div");
-  prevCalDiv.classList.add("calendar__shift");
-  prevCalDiv.setAttribute("id", "prevCalendar");
-  prevCalDiv.textContent = "previous";
-  calendars.appendChild(prevCalDiv);
+  const prevCal = document.createElement("span");
+  prevCal.classList.add("calendar__shift", "material-symbols-outlined");
+  prevCal.setAttribute("id", "prevCalendar");
+  prevCal.textContent = "arrow_back";
+  calendars.appendChild(prevCal);
 }
 
 function createNextButton() {
-  const nextCalDiv = document.createElement("div");
-  nextCalDiv.classList.add("calendar__shift");
-  nextCalDiv.setAttribute("id", "nextCalendar");
-  nextCalDiv.textContent = "next";
-  calendars.appendChild(nextCalDiv);
+  const calendars = document.querySelector("#calendars");
+  const nextCal = document.createElement("span");
+  nextCal.classList.add("calendar__shift", "material-symbols-outlined");
+  nextCal.setAttribute("id", "nextCalendar");
+  nextCal.textContent = "arrow_forward";
+  calendars.appendChild(nextCal);
 }
 /**
  * Create individual calendars that will be printed to the DOM
@@ -190,7 +191,6 @@ function deleteCalendars() {
  * Shifts the calendar display one month to the left
  */
 function prevCalendar() {
-  console.log("prev calendar");
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const startingDate = document.querySelector("#heading0").textContent.split(" ");
   const startingMonth = startingDate[0];
@@ -238,7 +238,6 @@ function nextCalendar() {
  * Toggles the visibility of the three month calendar
  */
 function toggleCalendar() {
-  console.log("toggle calendar");
   const classes = document.querySelector("#calendars").classList.toggle("hidden");
   if (document.querySelector("#heading0").textContent == "") {
     const startingDate = new Date(currentYear(), currentMonth());
