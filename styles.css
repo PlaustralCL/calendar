@@ -14,9 +14,11 @@ body {
 }
 
 .calendar__dates {
+  align-items: center;
   display: grid;
   grid-template-columns: repeat(7, 1rem);
   grid-gap: .5rem;
+  height: 180px;
   text-align: end;
 }
 
