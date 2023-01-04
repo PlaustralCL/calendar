@@ -117,12 +117,8 @@ function currentMonth() {
  */
 function createScaffold() {
   const NUMBER_OF_MONTHS = 3;
-  const calendars = document.querySelector("#calendars");
-  const prevCalDiv = document.createElement("div");
-  prevCalDiv.classList.add("calendar__shift");
-  prevCalDiv.setAttribute("id", "prevCalendar");
-  prevCalDiv.textContent = "previous";
-  calendars.appendChild(prevCalDiv);
+
+  createPreviousButton();
 
   for (let i = 0; i < NUMBER_OF_MONTHS; i++) {
     const calendarBoxDiv = document.createElement("div");
@@ -139,14 +135,25 @@ function createScaffold() {
     calendarDiv.setAttribute("id", `calendar${i}`);
     calendarBoxDiv.appendChild(calendarDiv);
   }
+  createNextButton();
+}
 
+function createPreviousButton() {
+  const calendars = document.querySelector("#calendars");
+  const prevCalDiv = document.createElement("div");
+  prevCalDiv.classList.add("calendar__shift");
+  prevCalDiv.setAttribute("id", "prevCalendar");
+  prevCalDiv.textContent = "previous";
+  calendars.appendChild(prevCalDiv);
+}
+
+function createNextButton() {
   const nextCalDiv = document.createElement("div");
   nextCalDiv.classList.add("calendar__shift");
   nextCalDiv.setAttribute("id", "nextCalendar");
   nextCalDiv.textContent = "next";
   calendars.appendChild(nextCalDiv);
 }
-
 /**
  * Create individual calendars that will be printed to the DOM
  * @param workingDate The year and month to base the starting calendar on
@@ -178,22 +185,6 @@ function deleteCalendars() {
   }
 
 }
-
-
-/**
- * Initiate program and control the flow
- */
-function main() {
-  printDateHeading();
-  createScaffold();
-  // createCalendars();
-}
-
-main();
-
-document.getElementById("nextCalendar").addEventListener("click", nextCalendar);
-document.getElementById("prevCalendar").addEventListener("click", prevCalendar);
-document.getElementById("current-date").addEventListener("click", toggleCalendar);
 
 /**
  * Shifts the calendar display one month to the left
@@ -256,3 +247,20 @@ function toggleCalendar() {
     deleteCalendars();
   }
 }
+
+
+/**
+ * Initiate program and control the flow
+ */
+function main() {
+  printDateHeading();
+  createScaffold();
+  // createCalendars();
+}
+
+main();
+
+// Event Listeners
+document.getElementById("nextCalendar").addEventListener("click", nextCalendar);
+document.getElementById("prevCalendar").addEventListener("click", prevCalendar);
+document.getElementById("current-date").addEventListener("click", toggleCalendar);
