@@ -140,19 +140,21 @@ function createScaffold() {
 
 function createPreviousButton() {
   const calendars = document.querySelector("#calendars");
-  const prevCal = document.createElement("span");
-  prevCal.classList.add("calendar__shift", "material-symbols-outlined");
+  const prevCal = document.createElement("img");
+  prevCal.classList.add("calendar__shift");
   prevCal.setAttribute("id", "prevCalendar");
-  prevCal.textContent = "arrow_back";
+  prevCal.setAttribute("src", "./icons/arrow_back.svg");
+  prevCal.setAttribute("alt", "previous");
   calendars.appendChild(prevCal);
 }
 
 function createNextButton() {
   const calendars = document.querySelector("#calendars");
-  const nextCal = document.createElement("span");
-  nextCal.classList.add("calendar__shift", "material-symbols-outlined");
+  const nextCal = document.createElement("img");
+  nextCal.classList.add("calendar__shift");
   nextCal.setAttribute("id", "nextCalendar");
-  nextCal.textContent = "arrow_forward";
+  nextCal.setAttribute("src", "./icons/arrow_forward.svg");
+  nextCal.setAttribute("alt", "next");
   calendars.appendChild(nextCal);
 }
 /**

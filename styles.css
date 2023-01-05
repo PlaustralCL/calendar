@@ -1,5 +1,6 @@
 :root {
   --today-background: #f7d0e8;
+  --icon-background: #e4f3f5;
 }
 
 body {
@@ -44,6 +45,11 @@ body {
 .calendar__shift:hover,
 .heading__current-date:hover {
   cursor: pointer;
+}
+
+.calendar__shift:hover {
+  border-radius: 100%;
+  background-color: var(--icon-background);
 }
 
 .calendar__month {
