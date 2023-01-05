@@ -143,7 +143,7 @@ function createPreviousButton() {
   const prevCal = document.createElement("img");
   prevCal.classList.add("calendar__shift");
   prevCal.setAttribute("id", "prevCalendar");
-  prevCal.setAttribute("src", "./icons/arrow_back.svg");
+  prevCal.setAttribute("src", "./icons/chevron_left.svg");
   prevCal.setAttribute("alt", "previous");
   calendars.appendChild(prevCal);
 }
@@ -153,7 +153,7 @@ function createNextButton() {
   const nextCal = document.createElement("img");
   nextCal.classList.add("calendar__shift");
   nextCal.setAttribute("id", "nextCalendar");
-  nextCal.setAttribute("src", "./icons/arrow_forward.svg");
+  nextCal.setAttribute("src", "./icons/chevron_right.svg");
   nextCal.setAttribute("alt", "next");
   calendars.appendChild(nextCal);
 }
